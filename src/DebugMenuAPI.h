@@ -13,15 +13,6 @@ namespace DEBUGMENU_API
 		V1 = 1
 	};
 
-	enum class APIResult : uint8_t
-	{
-		// Your API call was successful
-		OK,
-
-		// You have already been given control of this resource
-		AlreadyGiven,
-	};
-
 	class IVDebugMenu1
 	{
 		public:
@@ -43,7 +34,7 @@ namespace DEBUGMENU_API
 	typedef void* (*_RequestPluginAPI)(const InterfaceVersion interfaceVersion);
 
 	/// <summary>
-	/// Request the True HUD API interface.
+	/// Request the Debug Menu API interface.
 	/// Recommended: Send your request during or after SKSEMessagingInterface::kMessage_PostLoad to make sure the dll has already been loaded
 	/// </summary>
 	/// <param name="a_interfaceVersion">The interface version to request</param>
