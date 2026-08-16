@@ -12,7 +12,7 @@ namespace MCM
 		DebugMenu::GetDrawHandler()->UpdateCanvasScale();
 		DebugMenu::GetMarkerHandler()->HideAllMarkers();
 		DebugMenu::GetCollisionHandler()->HideAllCollisions();
-		ScaleformUI::GetDebugMenuUI()->SetMenuOpenKeyCode(settings::openMenuHotkey);
+		if (MCM::settings::enableMenuOpenOnHotkey) ScaleformUI::GetDebugMenuUI()->SetMenuOpenKeyCode(settings::openMenuHotkey);
 		UpdateCollisionColor();
 		if (!settings::modActive)
 		{

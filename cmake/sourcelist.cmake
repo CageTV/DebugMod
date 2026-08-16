@@ -26,6 +26,7 @@ set(sources ${sources}
 	src/Interface_prismaUI/InterfaceHandler.cpp
 	src/Linalg.cpp
 	src/MCM.cpp
+	src/ModAPI.cpp
 	src/RE.cpp
 	src/Renderer/CBuffer.cpp
 	src/Renderer/D3DContext.cpp
@@ -35,6 +36,7 @@ set(sources ${sources}
 	src/Renderer/Renderer.cpp
 	src/Renderer/Shaders.cpp
 	src/Renderer/VertexBuffer.cpp
+	src/TestHandler.cpp
 	src/Utils.cpp
 	src/main.cpp
 )

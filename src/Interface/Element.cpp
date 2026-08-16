@@ -51,7 +51,10 @@ void ScaleformUI::Element::RetrievePositionalInfo()
 	baseWidth = static_cast<float>(_width.GetNumber());
 	baseHeight = static_cast<float>(_height.GetNumber());
 
-	//logger::debug("{} w,h: {}, {}", GetInstanceName(), width, height);
+
+	UpdateBounds();
+
+	//logger::debug("{} w,h: {}, {}", GetInstanceName(), baseWidth, baseHeight);
 }
 
 void ScaleformUI::Element::Show()
@@ -139,7 +142,6 @@ void ScaleformUI::Element::Init()
 	else if (!IsGroup())
 	{ 
 		RetrievePositionalInfo();
-		UpdateBounds();
 	}
 	
 
@@ -235,6 +237,10 @@ void ScaleformUI::Element::OnMouseStateChanged(MOUSE_STATE a_state, bool a_sat)
 		{
 			if (AsButton()->IsToggleButton()) AsButton()->SetCorrectToggleValue();
 			else if (AsButton()->IsCyclicButton()) AsButton()->CycleValue();
+		}
+		else if (IsTextfield())
+		{
+			if (AsTextfield()->IsInputTextfield()) AsTextfield()->SetFocus();
 		}
 	}
 
@@ -1159,7 +1165,6 @@ void ScaleformUI::Element::SetLayoutAlpha(uint32_t a_alpha)
 	displayInfo.SetAlpha(static_cast<double>(a_alpha));
 	layoutGFx.SetDisplayInfo(displayInfo);
 }
-
 
 void ScaleformUI::Element::SetPadding(Direction a_direction, Size a_amount)
 {

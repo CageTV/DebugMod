@@ -1,5 +1,6 @@
 #include "Menu.h"
 #include "InputHandler.h"
+#include "UIUtils.h"
 
 ScaleformUI::Menu::Menu(const char* a_menuName)
 {
@@ -533,6 +534,38 @@ ScaleformUI::IElement* ScaleformUI::Menu::AttachUIElement(std::string a_linkageN
 			// instanceName, depth, x, y, width, height
 			RE::GFxValue textFieldArgs[6]{ a_instanceName.c_str(), nextHighestDepth, 0.0f, 0.0f, 10.0f, 10.0f };
 			parentGFx.Invoke("createTextField", &newGFx, textFieldArgs, 6);
+
+			//auto movie = iMenu->uiMovie;
+			//movie->CreateObject(&newGFx, "gfx.controls.TextInput");
+
+			//logger::info("yolo");
+
+			////newGFx.Invoke("constructor", nullptr);
+
+			//PrintGFxChildren(newGFx);
+
+			//logger::info("ello");
+
+			//parentGFx.SetMember(a_instanceName.c_str(), newGFx);
+
+			//
+
+
+			//newGFx.SetMember("_x", { 0 });
+			//newGFx.SetMember("_y", { 0 });
+			//newGFx.SetMember("_width", { 10.0f });
+			//newGFx.SetMember("_height", { 10.0f });
+
+			//newGFx.SetMember("alpha", { 100 });
+			//newGFx.SetMember("antiAliasType", { "advanced" });
+			//newGFx.SetMember("autoSize", { "none" });
+			//newGFx.SetMember("background", { false });
+			//newGFx.SetMember("backgroundColor", { 0xFFFFFF });
+			//newGFx.SetMember("border", { false });
+			//newGFx.SetMember("borderColor", { 0x000000 });
+			//newGFx.SetMember("bottomScroll", { 0 });
+			//newGFx.SetMember("condenseWhite", { false });
+
 
 			newGFx.SetMember("autoSize", { textFieldDefaultAutoSize });
 			newGFx.SetMember("wordWrap", { textFieldDefaultWordWrap });

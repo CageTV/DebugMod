@@ -8,6 +8,11 @@
 #include "Renderer/Renderer.h"
 #include "Interface/UIHandler.h"
 #include "Interface/InputHandler.h"
+#include "TestHandler.h"
+#include "DebugMenuAPI.h"
+#include "ModAPI.h"
+
+#define ENABLE_TESTING
 
 void MessageHandler(SKSE::MessagingInterface::Message* a_message) {
     switch (a_message->type) 
@@ -39,6 +44,10 @@ void MessageHandler(SKSE::MessagingInterface::Message* a_message) {
 		}
         case SKSE::MessagingInterface::kDataLoaded: 
 		{
+		#ifdef ENABLE_TESTING
+			RE::BSInputDeviceManager::GetSingleton()->AddEventSink(TestHandler::GetSingleton());
+		#endif
+
 			RE::BSInputDeviceManager::GetSingleton()->AddEventSink(FreeCamHandler::GetSingleton());
 			RE::BSInputDeviceManager::GetSingleton()->AddEventSink(ScaleformUI::InputHandler::GetSingleton());
 			RE::ScriptEventSourceHolder::GetSingleton()->AddEventSink<RE::TESCellFullyLoadedEvent>(DebugMenu::GetNavmeshHandler().get());
@@ -143,4 +152,20 @@ extern "C" __declspec( dllexport ) bool SKSEPlugin_Query(const SKSE::QueryInterf
 	pluginInfo->infoVersion = SKSE::PluginInfo::kVersion;
 	pluginInfo->version = SKSEPlugin_Version.pluginVersion;
 	return true;
+}
+
+extern "C" __declspec(dllexport) void* SKSEAPI RequestPluginAPI(const DEBUGMENU_API::InterfaceVersion a_interfaceVersion)
+{
+	auto api = Messaging::DebugMenuInterface::GetSingleton();
+
+	logger::info("DebguMenu::RequestPluginAPI called, InterfaceVersion {}", static_cast<uint8_t>(a_interfaceVersion));
+
+	switch (a_interfaceVersion) {
+		case DEBUGMENU_API::InterfaceVersion::V1:
+			logger::info("DebugMenu::RequestPluginAPI returned the API singleton");
+			return static_cast<void*>(api);
+	}
+
+	logger::info("DebugMenu::RequestPluginAPI requested the wrong interface version");
+	return nullptr;
 }

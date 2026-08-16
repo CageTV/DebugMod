@@ -14,6 +14,43 @@ void ScaleformUI::Textfield::SetGFx(RE::GFxValue& a_GFxValue)
 	bool success = a_GFxValue.Invoke("getTextFormat", &textFormatGFx);
 }
 
+void ScaleformUI::Textfield::SetAsInputTextfield()
+{
+	interactable = true;
+	isInputTextfield = true;
+
+	auto thisGFx = GetGFx();
+	thisGFx.SetMember("selectable", { true });
+	thisGFx.SetMember("type", { "input" });
+	
+}
+
+void ScaleformUI::Textfield::SetFocus()
+{
+	if (auto movie = menu->iMenu->uiMovie)
+	{
+		auto thisGFx = GetGFx();
+		RE::GFxValue res;
+		movie->Invoke("Selection.setFocus", &res, &thisGFx, 1);
+		hasFocus = res.GetBool();
+
+		thisGFx.SetMember("maxChars", { 100 });
+		RE::ControlMap::GetSingleton()->AllowTextInput(true);
+
+		RE::GFxValue maxChars;
+		thisGFx.GetMember("maxChars", &maxChars);
+
+		logger::info("focus sat? {}; Text field {}; max Chars: {}", res.GetBool(), GetInstanceName(), maxChars.GetNumber());
+	}
+}
+
+void ScaleformUI::Textfield::ResetFocus()
+{
+	if (auto movie = menu->iMenu->uiMovie)
+	{
+		movie->Invoke("Selection.setFocus", nullptr, nullptr, 1);
+	}
+}
 
 void ScaleformUI::Textfield::OnTextFieldChange()
 {
@@ -326,7 +363,7 @@ void ScaleformUI::Textfield::SetTextfieldWidth(Size a_width)
 		UIIndent++;
 	#endif
 
-	float width = SizeToDistanceY(a_width);
+	float width = SizeToDistanceX(a_width);
 	SetAutoSize(false); // Must be false when setting width/height
 
 	auto thisGFx = GetGFx();

@@ -76,6 +76,7 @@ namespace DebugMenu
 				metaData.bounds = 2*primitive->halfExtents;
 				metaData.cell = a_cell;
 				metaData.ref = a_ref;
+				metaData.formID = a_ref->formID;
 				metaData.infoType = InfoType::kOcclusion;
 
 				DrawBox(center, primitive->halfExtents, rotation, baseColor,

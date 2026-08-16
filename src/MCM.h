@@ -171,6 +171,8 @@ namespace MCM
 
 		static inline vec4u collisionColor;
 
+		static inline bool enableMenuOpenOnHotkey = true;
+
 		//static MarkerSetting showFurnitureMarkers;
 		//static MarkerSetting showSitMarkers;
 

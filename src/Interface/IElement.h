@@ -180,6 +180,7 @@ namespace ScaleformUI
 			virtual void SetOnScrollCallback(std::function<void(float)> a_callback) = 0; // The float argument is the scroll ratio (from 0 to 1)
 
 			// Text field methods
+			virtual void SetAsInputTextfield() = 0;
 			virtual void SetText(const char* a_text) = 0;
 			virtual void SetText(std::string a_text) = 0;
 			virtual void SetFont(const char* a_font) = 0; // use PrintFontList for list of font names

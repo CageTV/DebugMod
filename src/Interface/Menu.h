@@ -31,6 +31,7 @@ namespace ScaleformUI
 			bool IsReady();
 			bool IsOpen() const;
 			bool IsClosed() const;
+			bool IsCurrentlyClosing();
 			void Update(float a_delta);
 			void ToggleMenu();
 			void Open();
@@ -119,7 +120,7 @@ namespace ScaleformUI
 			std::function<bool()> openMenuFunction = nullptr; // will only open if function returns true
 			std::function<void()> closeMenuFunction = nullptr;
 			
-			ElementPTR	CreateUIElement(std::string a_instanceName, ELEMENT_TYPE a_type);
+			ElementPTR		CreateUIElement(std::string a_instanceName, ELEMENT_TYPE a_type);
 			void			PrintHierarchy();
 			void			OpenIMenu();
 			void			CloseIMenu();
@@ -128,8 +129,6 @@ namespace ScaleformUI
 			void			DisableCursorIfNecessary();
 			void			ConstructDefaultTextFormat();
 			void			UpdateAnimation(float a_delta);
-			bool			IsCurrentlyClosing();
-
 
 		public:
 			// Debug methods

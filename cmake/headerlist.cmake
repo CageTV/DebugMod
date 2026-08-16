@@ -8,6 +8,7 @@ set(headers ${headers}
 	src/DebugMenu/MarkerHandler.h
 	src/DebugMenu/NavmeshHandler.h
 	src/DebugMenu/RefInspectorHandler.h
+	src/DebugMenuAPI.h
 	src/DebugUIMenu.h
 	src/DrawHandler.h
 	src/DrawMenu.h
@@ -29,6 +30,7 @@ set(headers ${headers}
 	src/Interface_prismaUI/PrismaUI_API.h
 	src/Linalg.h
 	src/MCM.h
+	src/ModAPI.h
 	src/PCH.h
 	src/RE.h
 	src/Renderer/BasicDetour.h
@@ -40,6 +42,7 @@ set(headers ${headers}
 	src/Renderer/Renderer.h
 	src/Renderer/Shaders.h
 	src/Renderer/VertexBuffer.h
+	src/TestHandler.h
 	src/Utils.h
 	src/logger.h
 )

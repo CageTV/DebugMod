@@ -18,6 +18,9 @@ namespace DebugMenu
 
 		if (const auto cellCoords = cell->GetCoordinates())
 		{
+			// rare crash if these are not checked
+			if (!cell->GetRuntimeData().cellLand || !cell->GetRuntimeData().cellLand->loadedData) return;
+
 			float maxHeight = cell->GetRuntimeData().cellLand->loadedData->heightExtents[1];
 			auto cellHeights = cell->GetRuntimeData().cellLand->loadedData->heights;
 

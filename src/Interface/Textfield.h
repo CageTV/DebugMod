@@ -12,6 +12,8 @@ namespace ScaleformUI
 			Textfield*	AsTextfield() override { return static_cast<Textfield*>(this); }
 			bool		IsTextfield() override { return true; }
 			void		SetGFx(RE::GFxValue& a_GFxvalue) override;
+			void		SetAsInputTextfield() override;
+			const bool	IsInputTextfield() const { return isInputTextfield; }
 
 			void		SetTextfieldWidth(Size a_width);
 			void		SetTextfieldHeight(Size a_height);
@@ -38,10 +40,15 @@ namespace ScaleformUI
 			void		SetAutoSize(bool a_enabled) override;
 			void		SetWordWrap(bool a_enabled) override;
 
+			void		SetFocus();
+			void		ResetFocus();
+
 		private:
 			friend class Menu;
 
-			RE::GFxValue textFormatGFx;
+			bool			isInputTextfield = false;
+			bool			hasFocus = false;
+			RE::GFxValue	textFormatGFx;
 
 			void SetTextFormatGFx(RE::GFxValue a_textFormat) { textFormatGFx = a_textFormat; }
 			void OnTextFieldChange();

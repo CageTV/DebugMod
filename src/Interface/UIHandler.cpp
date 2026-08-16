@@ -89,7 +89,7 @@ void ScaleformUI::UIHandler::InitDebugMenuUI()
 
 		return true;
 	});
-	debugMenuUI->SetMenuOpenKeyCode(MCM::settings::openMenuHotkey);
+	if (MCM::settings::enableMenuOpenOnHotkey) debugMenuUI->SetMenuOpenKeyCode(MCM::settings::openMenuHotkey);
 
 	BuildDebugMenu();
 }
@@ -302,6 +302,25 @@ void ScaleformUI::UIHandler::BuildDebugMenu()
 		const float		toolTipsMaxWidthRatio = 0.25f;
 		const float		toolTipsBorderSize = 0.03f * a_menu->ScreenH();
 		const float		toolTipsDelay = 0.3f;
+
+	#pragma region TESTS
+
+		//auto textFieldTest1 = a_menu->CreateTextfield("TextfieldTest1");
+		//auto textFieldTest2 = a_menu->CreateTextfield("TextfieldTest2");
+
+		//textFieldTest1->SetAsInputTextfield();
+		//textFieldTest2->SetAsInputTextfield();
+
+		//textFieldTest1->SetFontSize(36);
+		//textFieldTest2->SetFontSize(36);
+
+		//textFieldTest1->AlignInsideParent(LEFT, CENTERV);
+		//textFieldTest2->AlignInsideParent(CENTERH, CENTERV);
+
+		//textFieldTest1->SetTextfieldWidth(700.0f);
+		//textFieldTest2->SetTextfieldWidth(350.0f);
+
+	#pragma endregion
 
 	#pragma region TOOL_TIPS_MESSAGES
 
@@ -1255,6 +1274,7 @@ void ScaleformUI::UIHandler::BuildDebugMenu()
 			title->SetFontColor(0xFFFFFF);
 			title->SetFont(skyrimBooksFont);
 			title->SetFontSize(14);
+
 			return title;
 		};
 		auto MakeRangeGroup = [&](IElement* a_parent, std::string a_elementPrefix, float* a_rangeSetting)
@@ -1371,7 +1391,7 @@ void ScaleformUI::UIHandler::BuildDebugMenu()
 		{
 			auto cellBordersGroup = mainMenuMaskGroup->CreateGroup("(CellBordersGroup)");
 
-			MakeTitle(cellBordersGroup, "CellBorders", "Cell Borders");
+			auto cellBordersTitle = MakeTitle(cellBordersGroup, "CellBorders", "Cell Borders");
 
 			auto cellBordersIcon = cellBordersGroup->AttachUIElement("CellBorderIcon", ELEMENT_TYPE::kBUTTON);
 			cellBordersIcon->SetHoverAnimation(toggleButtonHoverAnimation);

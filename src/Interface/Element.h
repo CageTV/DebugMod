@@ -227,6 +227,7 @@ namespace ScaleformUI
 			virtual void SetOnScrollCallback(std::function<void(float)> a_callback) override { return; }
 
 			// Text field methods
+			virtual void SetAsInputTextfield() override { return; }
 			virtual void SetText(const char* a_text) override { return; }
 			virtual void SetText(std::string a_text) override { return; }
 			virtual void SetFont(const char* a_font) override { return; }

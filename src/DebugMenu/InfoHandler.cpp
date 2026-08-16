@@ -103,7 +103,12 @@ std::string	DebugMenu::InfoHandler::GetCellInfo()
 std::string DebugMenu::InfoHandler::GetSourceFilesInfo()
 {
 	auto infoStr = "\nReferenced by:"s;
-	for (const auto& fileName : GetSouceFiles(shapeMetaData.ref))
+
+	const RE::TESForm* form = shapeMetaData.ref;
+	if (shapeMetaData.infoType == DrawHandler::ShapeMetaData::InfoType::kQuad)
+		form = shapeMetaData.cell ? shapeMetaData.cell->GetRuntimeData().cellLand : nullptr;
+
+	for (const auto& fileName : GetSouceFiles(form))
 	{
 		infoStr += "\nMod: "s;
 		infoStr += std::string(fileName);
@@ -673,7 +678,6 @@ std::string DebugMenu::InfoHandler::GetCollisionLayerName(RE::COL_LAYER a_layer)
 		}
 	}
 }
-
 
 std::vector<std::string_view> DebugMenu::InfoHandler::GetSouceFiles(const RE::TESForm* a_form)
 {

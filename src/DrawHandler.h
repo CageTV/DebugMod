@@ -36,15 +36,15 @@ class DrawHandler
 				kSoundMarker
 			};
 
-			InfoType infoType = InfoType::kNoInfo;
-			RE::FormID formID = 0x0;
-			const RE::TESObjectCELL* cell = nullptr;
-			const RE::TESObjectREFR* ref = nullptr;
-			RE::NiPoint3 bounds{ 0.0f, 0.0f, 0.0f };
-			int8_t quad = -1;
-			uint8_t coverEdge = 0;
-			uint16_t navmeshTraversalFlags = 0;
-			RE::COL_LAYER colliisonLayer = RE::COL_LAYER::kUnidentified;
+			InfoType					infoType = InfoType::kNoInfo;
+			RE::FormID					formID = 0x0;
+			const RE::TESObjectCELL*	cell = nullptr;
+			const RE::TESObjectREFR*	ref = nullptr;
+			RE::NiPoint3				bounds{ 0.0f, 0.0f, 0.0f };
+			int8_t						quad = -1;
+			uint8_t						coverEdge = 0;
+			uint16_t					navmeshTraversalFlags = 0;
+			RE::COL_LAYER				colliisonLayer = RE::COL_LAYER::kUnidentified;
 
 			ShapeMetaData() {}
 
