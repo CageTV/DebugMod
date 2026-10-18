@@ -14,6 +14,12 @@
 
 //#define ENABLE_TESTING
 
+#ifdef DEBUGMENU_NG
+#	ifndef SKSEAPI
+#		define SKSEAPI __cdecl  // what the SKSE headers define it as; alandtse's CommonLibSSE-NG leaves it out
+#	endif
+#endif
+
 void MessageHandler(SKSE::MessagingInterface::Message* a_message) {
     switch (a_message->type) 
 	{
@@ -85,7 +91,7 @@ void MessageHandler(SKSE::MessagingInterface::Message* a_message) {
     }
 }
 
-extern "C" __declspec( dllexport ) bool SKSEAPI SKSEPlugin_Load(const SKSE::LoadInterface* a_skse)
+static bool DebugMenuLoad(const SKSE::LoadInterface* a_skse)
 {
     SKSE::Init(a_skse);
     SetupLog();
@@ -134,6 +140,18 @@ extern "C" __declspec( dllexport ) bool SKSEAPI SKSEPlugin_Load(const SKSE::Load
     return true;
 }
 
+#ifdef DEBUGMENU_NG
+// ng build (alandtse CommonLibSSE-NG, Skyrim 1.6.1170 and 1.7.x): add_commonlibsse_plugin generates the SKSEPluginInfo block
+SKSEPluginLoad(const SKSE::LoadInterface* a_skse)
+{
+	return DebugMenuLoad(a_skse);
+}
+#else
+extern "C" __declspec( dllexport ) bool SKSEAPI SKSEPlugin_Load(const SKSE::LoadInterface* a_skse)
+{
+	return DebugMenuLoad(a_skse);
+}
+
 extern "C" __declspec( dllexport ) constinit auto SKSEPlugin_Version = []() {
 	SKSE::PluginVersionData v;
 	v.PluginVersion(Version::VERSION);
@@ -153,6 +171,7 @@ extern "C" __declspec( dllexport ) bool SKSEPlugin_Query(const SKSE::QueryInterf
 	pluginInfo->version = SKSEPlugin_Version.pluginVersion;
 	return true;
 }
+#endif
 
 extern "C" __declspec(dllexport) void* SKSEAPI RequestPluginAPI(const DEBUGMENU_API::InterfaceVersion a_interfaceVersion)
 {

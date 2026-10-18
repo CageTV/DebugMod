@@ -6,6 +6,13 @@
 
 namespace Hooks
 {
+	// Skyrim 1.7.x (AE): the compiler now zero-initialises extra locals ahead of two of the hooked calls, which moves them.
+	// Checked against SkyrimSE.exe 1.7.99 and 1.7.104 (same call target as before, same instruction shape around it).
+	inline bool IsRuntime17()
+	{
+		return !REL::Module::IsVR() && REL::Module::get().version() >= REL::Version(1, 7, 0, 0);
+	}
+
 	// not in use
 	class Hook_PlayerUpdate 
 	{
@@ -37,7 +44,7 @@ namespace Hooks
 				logger::debug("Hook: MainUpdate sub_140437D40");
 
 				auto& trampoline = SKSE::GetTrampoline();
-				REL::Relocation<uintptr_t> hook{ RELOCATION_ID(35565, 36564), REL::VariantOffset(0x2BB, 0x2D6, 0x2D6) };
+				REL::Relocation<uintptr_t> hook{ RELOCATION_ID(35565, 36564), REL::VariantOffset(0x2BB, IsRuntime17() ? 0x2E9 : 0x2D6, 0x2D6) };
 				_Update = trampoline.write_call<5>(hook.address(), Update);
 			}
 		private:
@@ -178,7 +185,7 @@ namespace Hooks
 				logger::debug("Hook: FreeCameraState UpdatePosition_140437D40");
 
 				auto& trampoline = SKSE::GetTrampoline();
-				REL::Relocation<uintptr_t> hook{ RELOCATION_ID(49813, 50743), REL::VariantOffset(0x12, 0x12, 0x12) };
+				REL::Relocation<uintptr_t> hook{ RELOCATION_ID(49813, 50743), REL::VariantOffset(0x12, IsRuntime17() ? 0x23 : 0x12, 0x12) };
 				_UpdatePosition = trampoline.write_call<5>(hook.address(), UpdatePosition);
 			}
 
