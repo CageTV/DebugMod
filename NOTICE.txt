@@ -1,0 +1,15 @@
+Debug Menu (SKSE Menu Framework pages, Skyrim 1.7.x build) - license notice
+
+Source code: https://github.com/CageTV/DebugMod
+The complete source of this download is in that repository; the tag matching this release is named in the release notes.
+
+Copyright (c) 2024 Sp0derm0n (Debug Menu); changes for Skyrim 1.7.x and the SKSE Menu Framework pages by CageTV.
+
+The Debug Menu source is MIT licensed (LICENSE.txt in this download, which also carries the GPL-3.0 text). The DebugMenu.dll in this download is built with alandtse's CommonLibSSE-NG (GPL-3.0 with a modding exception) and bundles the SKSE Menu Framework header (GPL-3.0), so the compiled DLL is distributed under the GNU General Public License, version 3 or (at your option) any later version.
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
+License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
