@@ -28,6 +28,7 @@ set(sources ${sources}
 	src/MCM.cpp
 	src/ModAPI.cpp
 	src/RE.cpp
+	src/SMFMenu.cpp
 	src/Renderer/CBuffer.cpp
 	src/Renderer/D3DContext.cpp
 	src/Renderer/Drawer.cpp

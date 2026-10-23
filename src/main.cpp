@@ -11,6 +11,7 @@
 #include "TestHandler.h"
 #include "DebugMenuAPI.h"
 #include "ModAPI.h"
+#include "SMFMenu.h"
 
 //#define ENABLE_TESTING
 
@@ -74,6 +75,8 @@ void MessageHandler(SKSE::MessagingInterface::Message* a_message) {
 			Hooks::Hook_FreeCameraState_UpdatePosition_1408E0640::Install();
 			Hooks::Hook_FreeCameraBegin::install();
 			Hooks::Hook_FreeCameraEnd::install();
+
+			SMFMenu::Register();
 
 			MCM::settings::logUI = false;
 			MCM::settings::uiScale = 1.0f;
